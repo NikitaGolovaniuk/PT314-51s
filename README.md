@@ -1,23 +1,23 @@
-All about notebook Acer Predator Triton 300 SE 
-Model number: PT314-51s
+# **All about notebook Acer Predator Triton 300 SE**
+# **Model number: PT314-51s**
 
-######  HOW TO BIND PREDATOR BUTTON  ######
-### Problem: X11 accept only 1 byte info as keycode so
-### its restricted to 0-255 values and if you want to 
-### bind key with keycode above 255 then you should use 
-### translator/router. According to this page https://ubuntuforums.org/showthread.php?t=2182054
-### We will use evrouter from AUR.
+#  HOW TO BIND PREDATOR BUTTON
+## Problem: X11 accept only 1 byte info as keycode so
+## its restricted to 0-255 values and if you want to 
+## bind key with keycode above 255 then you should use 
+## translator/router. According to this [page](https://ubuntuforums.org/showthread.php?t=2182054)
+## We will use evrouter from AUR.
 1. go to aur and grab last PKGBUILD from comments https://aur.archlinux.org/packages/evrouter or take my PKGBUILD_EVROUTER and remove _EVROUTER
 2. Install it manually by commands:
-<code>
-    cd YOUR_DIR_WITH_PKGBUILD
-    makepkg -si
-</code>
-3. Now you have evrouter installed. Now you should set rules
-I missed this step but it could be neccesary for you
+```
+cd YOUR_DIR_WITH_PKGBUILD
+makepkg -si
+```
+3. ### Now you have evrouter installed. Now you should set rules
+### I missed this step but it could be neccesary for you
 
-#Add a rule to allow users to read /dev/input/event*
-<code>
+# Add a rule to allow users to read /dev/input/event*
+```
 echo 'KERNEL=="event*", NAME="input/%k", GROUP="input" | sudo tee /etc/udev/rules.d/80-evrouter.rules
 
 sudo addgroup input
@@ -25,7 +25,7 @@ sudo addgroup input
 sudo usermod -aG input ${USER}
 
 sudo reboot
-</code>
+```
 
 4. type evtest in terminal and find your keycode and keyboard name.
 Mine output:
@@ -33,15 +33,15 @@ Mine output:
 So i pressed '3' and checked keycode of needed button it was 425
 
 5. Create a evrouter file config (${HOME}/.evrouterrc):
-<code>
+```
 Format:
 "Name of your event" "event link" none key/Number_your_key "XKey/Name_your_key"
 Mine:
 "AT Translated Set 2 keyboard" "/dev/input/event3" none key/425 "XKey/XF86Community"
-</code>
+```
 
-List of names:
-<code>
+List of names *
+
     XF86AddFavoriteXF86ApplicationLeft
     XF86ApplicationRight
     XF86AudioMedia
@@ -185,29 +185,29 @@ List of names:
     XF86ZoomIn
     XF86ZoomOut
     XF86iTouch
-</code>
+*
 
 6. Look the keys free with xmodmap, eg:
-<code>
+```
     xmodmap -pke | egrep "=$"
-</code>
+```
 7. Create a xmodmap file config (${HOME}/.xmodmap):
-<code>
+```
     Format:
     keycode Number_key_free = Name_your_key
     Mine:
     keycode 97 = XF86Community
-</code>
+```
 8. Connect all things
-<code>
+```
     xmodmap ~/.xmodmap
     evrouter /dev/input/event3
-</code>
+```
 9. Type xev and test your key
 10. If all is good. Add those strings to autostart in your DM like i3wm etc.
-<code>
+```
     modmap ~/.xmodmap
     evrouter /dev/input/event3
-</code>
+```
 
 Biggest thanks to hizo for his big job!
