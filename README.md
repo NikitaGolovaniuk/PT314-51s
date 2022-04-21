@@ -1,22 +1,22 @@
 # **All about notebook Acer Predator Triton 300 SE**
-# **Model number: PT314-51s**
+#### Model number: PT314-51s
 
-#  HOW TO BIND PREDATOR BUTTON
-## Problem: X11 accept only 1 byte info as keycode so
-## its restricted to 0-255 values and if you want to 
-## bind key with keycode above 255 then you should use 
-## translator/router. According to this [page](https://ubuntuforums.org/showthread.php?t=2182054)
-## We will use evrouter from AUR.
+> ###  HOW TO BIND PREDATOR BUTTON
+#### Problem: X11 accept only 1 byte info as keycode so
+#### its restricted to 0-255 values and if you want to 
+#### bind key with keycode above 255 then you should use 
+#### translator/router. According to this [page](https://ubuntuforums.org/showthread.php?t=2182054)
+#### We will use evrouter from AUR.
 1. go to aur and grab last PKGBUILD from comments https://aur.archlinux.org/packages/evrouter or take my PKGBUILD_EVROUTER and remove _EVROUTER
 2. Install it manually by commands:
 ```
 cd YOUR_DIR_WITH_PKGBUILD
 makepkg -si
 ```
-3. ### Now you have evrouter installed. Now you should set rules
-### I missed this step but it could be neccesary for you
+3. Now you have evrouter installed. Now you should set rules
+I missed this step but it could be neccesary for you
 
-# Add a rule to allow users to read /dev/input/event*
+Add a rule to allow users to read /dev/input/event*
 ```
 echo 'KERNEL=="event*", NAME="input/%k", GROUP="input" | sudo tee /etc/udev/rules.d/80-evrouter.rules
 
@@ -39,19 +39,8 @@ Format:
 Mine:
 "AT Translated Set 2 keyboard" "/dev/input/event3" none key/425 "XKey/XF86Community"
 ```
+<details><summary>A dropdown list of names</summary>
 
-List of names *
-
-    XF86AddFavoriteXF86ApplicationLeft
-    XF86ApplicationRight
-    XF86AudioMedia
-    XF86AudioMute
-    XF86AudioNext
-    XF86AudioPause
-    XF86AudioPlay
-    XF86AudioPrev
-    XF86AudioLowerVolume
-    XF86AudioRaiseVolume
     XF86AudioRecord
     XF86AudioRewind
     XF86AudioStop
@@ -185,7 +174,21 @@ List of names *
     XF86ZoomIn
     XF86ZoomOut
     XF86iTouch
-*
+    XF86AddFavoriteXF86ApplicationLeft
+    XF86ApplicationRight
+    XF86AudioMedia
+    XF86AudioMute
+    XF86AudioNext
+    XF86AudioPause
+    XF86AudioPlay
+    XF86AudioPrev
+    XF86AudioLowerVolume
+    XF86AudioRaiseVolume
+</details>
+
+
+
+    
 
 6. Look the keys free with xmodmap, eg:
 ```
