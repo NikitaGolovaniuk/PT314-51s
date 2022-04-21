@@ -48,9 +48,6 @@ Mine:
 "AT Translated Set 2 keyboard" "/dev/input/event3" none key/425 "XKey/XF86Community"
 ```
 
-#Real Cool Heading
-
-
 ***<details><summary>A dropdown list of names</summary>***
 
     XF86AudioRecord
